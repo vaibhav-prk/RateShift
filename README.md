@@ -1,6 +1,6 @@
 # WardGate
 
-**WardGate** is a lightweight, multi-tenant API Gateway and Rate Limiting service built with Go, Redis, and Chi. It acts as a reverse proxy that authenticates incoming client requests, evaluates rate limits on a per-tenant basis, and forwards permitted traffic to backend services.
+**WardGate** is a lightweight, multi-tenant API Gateway and Rate Limiting service built with Go, Redis, and Chi. It acts as a reverse proxy that authenticates incoming client requests, evaluates rate limits on a per-tenant basis, and forwards permitted traffic to backend services. 
 
 ---
 
