@@ -1,0 +1,35 @@
+services:
+  redis:
+    image: redis:8.8.0-alpine3.23
+    ports:
+      - "6379:6379"
+    command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  mock-backend:
+    build:
+      context: ..
+      dockerfile: deploy/mock-backend/Dockerfile
+    ports:
+      - "8081:8081"
+
+  gateway:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../config.yaml:/config.yaml
+    environment:
+      - BACKEND_URL=http://mock-backend:8081
+      - REDIS_URL=redis:6379
+    depends_on:
+      redis:
+        condition: service_healthy
+      mock-backend:
+        condition: service_started

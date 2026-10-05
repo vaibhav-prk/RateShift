@@ -1,0 +1,21 @@
+tenants:
+  tenant-a:
+    tenant_id: tenant-a
+    api_key: tenant-a-key
+    rate_limit: 10
+    burst_size: 20
+    algorithm: token_bucket
+
+  tenant-b:
+    tenant_id: tenant-b
+    api_key: tenant-b-key
+    rate_limit: 5
+    burst_size: 10
+    algorithm: token_bucket
+
+  tenant-c:
+    tenant_id: tenant-c
+    api_key: tenant-c-key
+    rate_limit: 20
+    burst_size: 40
+    algorithm: token_bucket
